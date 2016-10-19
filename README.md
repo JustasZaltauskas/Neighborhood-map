@@ -9,6 +9,11 @@ Project 5 from Udacity Front-end Web Developer Nanodegree.
 ##[Demo](https://justaszaltauskas.github.io/Neighborhood-map/)  
 You can see a demo [here](https://justaszaltauskas.github.io/Neighborhood-map/).
 
+<img src='http://gdurl.com/hpC5' width="280" height="180" /> <img src='http://gdurl.com/9DI7' width="280" height="180" />
+
+
+
+
 ##Technologies
 [KnockoutJS](http://knockoutjs.com/)  
 JavaScript  
