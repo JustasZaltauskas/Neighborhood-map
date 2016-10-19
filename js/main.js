@@ -414,8 +414,7 @@ function createMarker(place) {
         // get street view photo of a place
         var streetviewURL = "https://maps.googleapis.com/maps/api/streetview?";
         // https://maps.googleapis.com/maps/api/streetview?size=350x200&location=54.921963,23.956368999999995&heading=151.78
-        streetviewURL += 'size=160x120';
-        streetviewURL += '&' + 'location' + '=' + marker.position.lat() + ',' + marker.position.lng();
+        streetviewURL += 'size=160x120&location=' + marker.position.lat() + ',' + marker.position.lng();
         // the content we are going to present of info window might not be available
         if (marker.details.vicinity === undefined)
             marker.details.vicinity = '';
