@@ -10,11 +10,12 @@ Neighborhood map - Project 5 from Udacity Front-end Web Developer Nanodegree.
 You can see a demo [here](https://justaszaltauskas.github.io/Neighborhood-map/).
 
 ##Technologies
-[KnockoutJS](http://knockoutjs.com/)
-JavaScript
+[KnockoutJS](http://knockoutjs.com/)  
+JavaScript  
 jQuery  
-HTML5
-CSS3
-Bootstrap
-Grunt
+HTML5  
+CSS3  
+Bootstrap   
+Grunt 
+
 
