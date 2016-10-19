@@ -412,7 +412,8 @@ function createMarker(place) {
         google.maps.event.trigger(infoWindowPlaces, 'closeclick');
         marker.setAnimation(google.maps.Animation.BOUNCE);
         // get street view photo of a place
-        streetviewURL = 'https://maps.googleapis.com/maps/api/streetview?size=160x120&location=' + marker.position.lat() + ',' + marker.position.lng();
+        streetviewURL = 'https://maps.googleapis.com/maps/api/streetview?size=160x120&location=' +
+            marker.position.lat() + ',' + marker.position.lng() + '&key=AIzaSyAVlDhJyuG8c7HoZjwU7VbE9OraSqJHZd0';
         // the content we are going to present of info window might not be available
         if (marker.details.vicinity === undefined)
             marker.details.vicinity = '';
