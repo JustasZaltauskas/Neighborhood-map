@@ -7,72 +7,82 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- Tab icon -->
-    <link rel="icon" type="image/icon"
-    href="http://icons.iconarchive.com/icons/igh0zt/ios7-style-metro-ui/96/MetroUI-Google-Maps-icon.png" />
-    <!-- Page style -->
+    <link rel="icon" type="image/icon" href="http://icons.iconarchive.com/icons/igh0zt/ios7-style-metro-ui/96/MetroUI-Google-Maps-icon.png" />
+    <!-- Page stylesheet -->
     <link rel="stylesheet" type="text/css" href="css/main-styles.css">
-    <!-- Bootstrap css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- jQuerry -->
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-    <!-- fullPage css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.min.css">
 </head>
 
 <body>
     <!-- Intro page -->
     <div id="fullpage" class='container-fluid'>
-        <div class='row section intro fill-window' >
-            <div class="content bgcolor-4" id="input-div">
-                <button id='location-btn'>
-                </button>
+        <div class='row section intro fill-window'>
+            <div class="content input-background" id="input-div">
+                <button id='location-btn'></button>
                 <span class="input">
-                    <input class="input__field" type="text" id="input-1" placeholder="Anything you want!" selectOnFocus: true'/>
+                    <input class="input__field" type="text" id="input-1" placeholder="Anything you want!" />
                     <label class="input__label" for="input-1">
-                        <svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+                        <svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
                             <path d="m0,0l405,0l0,77-406,0l0,-77z"/>
                         </svg>
                     </label>
                 </span>
-                <button id ='search-btn'>
-                </button>
+                <button id='search-btn'></button>
             </div>
         </div>
-        <!-- About page -->
-<!--     <section class='section row fill-window'>
-        <div class='col-md-12'>
-            <h1>About</h1>
-        </div>
-    </section> -->
-    <!-- Google map page-->
-    <div class='section row'>
-        <div class='fill-window' id="map">
-        </div>
-        <aside id='map-menu'>
-            <div id='places-list'>
+        <div class='section row'>
+            <div class='fill-window' id="map">
             </div>
-        </aside>
+            <aside id='map-menu'>
+                <div class='map-menu-container' data-bind='foreach:categories'>
+                    <div class='map-menu-elements' data-bind='text: $data , click : $root.showPlacesByCategory'></div>
+                </div>
+                <br>
+                <div class='map-menu-container wikipedia-articles-container'>
+                    <div class='map-menu-elements' data-bind='foreach:articles'>
+                        <a data-bind='attr: { href: url, text: title } ,text: title' target="_blank"></a>
+                        <div>
+                            <span class='wikipedia-article-underline-text'>Wikipedia article</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </div>
-</div>
 
+</body>
+<!-- Load Google fonts async -->
+<script>
+    WebFontConfig = {
+        google: ['Roboto:500']
+    };
+    (function(d) {
+        var wf = d.createElement('script'),
+        s = d.scripts[0];
+        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js';
+        s.parentNode.insertBefore(wf, s);
+    })(document);
+</script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<!-- fullPage css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.min.css">
+<!--    fullPage js -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.min.js' defer></script>
 <script type="text/javascript">
-
     $(document).ready(function() {
         $('#fullpage').fullpage({
-            verticalCentered : false ,
-            anchors: ['firstPage', 'secondPage']
+            verticalCentered: false,
+            anchors: ['firstPage', 'secondPage'],
+            normalScrollElements : '.wikipedia-articles-container'
         });
     });
 </script>
-<script src="https://cdn.klokantech.com/maptilerlayer/v1/index.js" async defer></script>
-<!--    fullPage js -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.min.js' async defer></script>
-<!--     Load google map -->
-<script src='js/map.js' async defer></script>
-<!-- Google maps and places API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsc95IgF4EgR1BfyKZ1WbKPNUBaDfaIVE&libraries=places&callback=initMap"
-async defer></script>
 <!--   Knockout -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js" defer></script>
+<!--     Load google map -->
+<script src='js/main.js' defer></script>
+<!-- Google maps and places API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsc95IgF4EgR1BfyKZ1WbKPNUBaDfaIVE&libraries=places&callback=initMap" defer>
+</script>
+
 </html>

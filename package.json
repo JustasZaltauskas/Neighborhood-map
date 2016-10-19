@@ -1,0 +1,24 @@
+{
+  "name": "neighborhood-map",
+  "version": "1.0.0",
+  "description": "udacity project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustasZaltauskas/Neighborhood-map.git"
+  },
+  "author": "Justas Žaltauskas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JustasZaltauskas/Neighborhood-map/issues"
+  },
+  "homepage": "https://github.com/JustasZaltauskas/Neighborhood-map#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-imagemin": "^1.0.1",
+    "grunt-uncss": "^0.6.1"
+  }
+}
