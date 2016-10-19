@@ -377,7 +377,7 @@ h2#marker-menu-headline {
         width: 210px !important;
     }
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 465px) {
     .map-menu-container {
         font-size: 0.75em;
     }
