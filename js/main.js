@@ -78,8 +78,12 @@ var viewModel = function() {
 
     self.showPlacesByCategory = function(item, event) {
         self.markersToDisplay.removeAll();
+         // delete markers from map
+        setMapOnAll(null, markers);
+        
         markersByCategory[item].forEach(function(marker) {
             self.markersToDisplay.push(marker);
+            marker.setMap(map);
         });
 
         if (document.getElementById('marker-menu-headline') === null) {
@@ -97,10 +101,6 @@ var viewModel = function() {
         $(".map-menu-container").css('right', '100%');
         // remove borders on slide
         $(".map-menu-elements").css('border-style', 'none');
-        // delete markers from map
-        setMapOnAll(null, markers);
-        // display markers who have selected category
-        setMapOnAll(map, markersByCategory[item]);
     };
 
     self.showMarkerByPlace = function(item, event) {
