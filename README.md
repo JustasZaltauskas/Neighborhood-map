@@ -6,8 +6,8 @@ Project 5 from Udacity Front-end Web Developer Nanodegree.
 
 > Udacity
 
-##[Demo](https://justaszaltauskas.github.io/Neighborhood-map/)  
-You can see a demo [here](https://justaszaltauskas.github.io/Neighborhood-map/).
+##[Demo](https://justaszaltauskas.github.io/Neighborhood-map/index.html)  
+You can see a demo [here](https://justaszaltauskas.github.io/Neighborhood-map/index.html).
 
 <img src='http://gdurl.com/hpC5' width="480" height="240" /> <img src='http://gdurl.com/9DI7' width="480" height="240" />
 
