@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Neighborhood map</title>
     <meta charset="utf-8">
@@ -11,13 +10,12 @@
     <!-- Page stylesheet -->
     <link rel="stylesheet" type="text/css" href="css/main-styles.css">
 </head>
-
 <body>
     <!-- Intro page -->
     <div id="fullpage" class='container-fluid'>
         <div class='row section intro fill-window'>
             <div class="content input-background" id="input-div">
-                <button id='location-btn'></button>
+                <button id='location-btn' data-bind='click: getCurrentLocation'></button>
                 <span class="input">
                     <input class="input__field" type="text" id="input-1" placeholder="Anything you want!" />
                     <label class="input__label" for="input-1">
@@ -26,20 +24,22 @@
                         </svg>
                     </label>
                 </span>
-                <button id='search-btn'></button>
+                <button id='search-btn' data-bind='click: moveToSecondPage'></button>
             </div>
         </div>
         <div class='section row'>
             <div class='fill-window' id="map">
             </div>
             <aside id='map-menu'>
-                <div class='map-menu-container' data-bind='foreach:categories'>
-                    <div class='map-menu-elements' data-bind='text: $data , click : $root.showPlacesByCategory'></div>
+            <!--  data-bind='foreach:categories -->
+                <div class='map-menu-container' data-bind='foreach:places'>
+                <!-- data-bind='text: $data , click : $root.showPlacesByCategory' -->
+                    <div class='map-menu-elements' data-bind='text: $data.name , click : $root.showPlacesByCategory'></div>
                 </div>
                 <br>
-                <div class='map-menu-container wikipedia-articles-container'>
-                    <div class='map-menu-elements' data-bind='foreach:articles'>
-                        <a data-bind='attr: { href: url, text: title } ,text: title' target="_blank"></a>
+                <div class='map-menu-container wikipedia-articles-container' data-bind='foreach:articles'>
+                    <div class='map-menu-elements' >
+                        <a  target="_blank" data-bind='attr: { href: url, text: title } ,text: title'></a>
                         <div>
                             <span class='wikipedia-article-underline-text'>Wikipedia article</span>
                         </div>
@@ -48,8 +48,9 @@
             </aside>
         </div>
     </div>
-
 </body>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
 <!-- Load Google fonts async -->
 <script>
     WebFontConfig = {
@@ -62,10 +63,6 @@
         s.parentNode.insertBefore(wf, s);
     })(document);
 </script>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-<!-- fullPage css -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.min.css">
 <!--    fullPage js -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.min.js' defer></script>
 <script type="text/javascript">
@@ -73,7 +70,7 @@
         $('#fullpage').fullpage({
             verticalCentered: false,
             anchors: ['firstPage', 'secondPage'],
-            normalScrollElements : '.wikipedia-articles-container'
+            normalScrollElements : ['.wikipedia-articles-container' , '#markers-menu-marker-div']
         });
     });
 </script>
@@ -82,7 +79,7 @@
 <!--     Load google map -->
 <script src='js/main.js' defer></script>
 <!-- Google maps and places API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsc95IgF4EgR1BfyKZ1WbKPNUBaDfaIVE&libraries=places&callback=initMap" defer>
-</script>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsc95IgF4EgR1BfyKZ1WbKPNUBaDfaIVE&libraries=places&callback=startApp" defer></script>
+<!-- fullPage css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.min.css">
 </html>
