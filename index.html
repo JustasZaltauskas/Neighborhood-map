@@ -31,9 +31,7 @@
             <div class='fill-window' id="map">
             </div>
             <aside id='map-menu'>
-            <!--  data-bind='foreach:categories -->
                 <div class='map-menu-container' data-bind='foreach:places'>
-                <!-- data-bind='text: $data , click : $root.showPlacesByCategory' -->
                     <div class='map-menu-elements' data-bind='text: $data.name , click : $root.showPlacesByCategory'></div>
                 </div>
                 <br>
