@@ -56,11 +56,11 @@ var Article = function(pageID, title) {
 var ViewModel = function() {
     var self = this;
 
-    self.moveToSecondPage = undefined;
+    self.moveToSecondPage = undefined; // function will be assignned
 
-    self.places = ko.observableArray([]);
+    self.places = ko.observableArray([]); // array of Category objects
 
-    self.articles = ko.observableArray([]);
+    self.articles = ko.observableArray([]); // array of Article objects
 
     self.showMarkerByPlace = function(item, event) {
         google.maps.event.trigger(item, 'click');
@@ -70,11 +70,11 @@ var ViewModel = function() {
 
     self.filter = function(name) {
         self.currentFilter(name);
-    }
+    };
 
     // filter places by selected category
     self.filteredArray = ko.computed(function() {
-        if (!self.currentFilter() ) {
+        if (!self.currentFilter()) {
             return [];
         } else {
             return ko.utils.arrayFilter(self.places(), function(place) {
@@ -231,7 +231,7 @@ var ViewModel = function() {
             self.places.pop();
         }
 
-        if ( places.length === 0 ) {
+        if (places.length === 0) {
             self.places.push(new Category('We could not find any places nearby'));
             $('.map-menu-elements')[0].style.pointerEvents = 'none';
         }
@@ -264,8 +264,10 @@ var ViewModel = function() {
             }
         }
     };
-
-    // Create a marker and its infoWindow for every place found
+    /**
+     * create a Google maps marker, assign to Category object in self.places array
+     * @param {object} place
+     */
     self.createMarker = function(place) {
         var placeType;
         // iterating till we find a match between placeTypes and place.types(each place has array of types)
@@ -283,7 +285,7 @@ var ViewModel = function() {
             icon: mapIcons[placeType].url,
         };
 
-        var placeType = assignCategory(placeType);
+        placeType = assignCategory(placeType);
 
         var marker = new google.maps.Marker(data);
 
@@ -299,7 +301,7 @@ var ViewModel = function() {
             });
         }
         // if places array is empty or we haven't find an existing place category then we create a new one
-        if (found == false || self.places().length === 0) {
+        if (found === false || self.places().length === 0) {
             var category = new Category(placeType);
             category.addMarker(marker);
             self.places.push(category);
@@ -310,7 +312,7 @@ var ViewModel = function() {
             google.maps.event.trigger(infoWindowPlaces, 'closeclick');
             marker.setAnimation(google.maps.Animation.BOUNCE);
             // get street view photo of a place
-            streetviewURL = 'https://maps.googleapis.com/maps/api/streetview?size=160x120&location=' +
+            var streetviewURL = 'https://maps.googleapis.com/maps/api/streetview?size=160x120&location=' +
                 marker.position.lat() + ',' + marker.position.lng() + '&key=AIzaSyAVlDhJyuG8c7HoZjwU7VbE9OraSqJHZd0';
             // the content we are going to present of info window might not be available
             if (marker.details.vicinity === undefined)
@@ -343,11 +345,12 @@ var ViewModel = function() {
                 marker.setAnimation(null);
             });
         });
-
-        // markers.push(marker);
     };
-
-    self.showPlacesByCategory = function(item, event) {
+    /**
+     * show a list of markers(div#markers-menu-container) by selected category
+     * @param {object} item
+     */
+    self.showPlacesByCategory = function(item) {
         // show markers of selected category
         self.places().forEach(function(place) {
             if (place.name !== item.name) {
@@ -373,6 +376,8 @@ var ViewModel = function() {
         // remove borders on slide
         $(".map-menu-elements").css('border-style', 'none');
     };
+
+    // create aside menu where we display markers of selected category
 
     function createMarkersToDisplayMenu() {
         var containerDiv = document.createElement('div');
@@ -428,12 +433,10 @@ var ViewModel = function() {
     }
 
     // get wikipedia articles around current location
-    // arguments : lat,lng,articles limit,radius
     self.makeWikipediaAjaxRequest = function(lat, lng, limit, radius) {
         // remove previous data acquired
         if (self.articles.length === 0)
             self.articles.removeAll();
-
 
         wikipediaAjax(lat, lng, limit, radius).done(function(articles) {
             // if we did not find any articles we create announce it to the user
@@ -463,7 +466,7 @@ var ViewModel = function() {
             self.articles.push(nonExistingArticle);
             $('.wikipedia-articles-container .map-menu-elements')[0].style.cursor = 'default';
         });
-    }
+    };
 
     self.initMap();
 
@@ -477,8 +480,11 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
 }
-
-// Assign a category for each place
+/**
+ * return a category for each place type
+ * @param {string} placeType
+ * @return {string} category name
+ */
 function assignCategory(placeType) {
     if (placeType === 'restaurant') {
         return 'Restaurants';
@@ -511,7 +517,14 @@ function setMapOnAll(map, array) {
     }
 }
 
-// // get wikipedia articles by geolocation and return and array of of articles
+/**
+ * get wikipedia articles around given location within radius
+ * @param {number} lat
+ * @param {number} lng
+ * @param {number} limit
+ * @param {number} radius
+ * @return {object} object with a property which has a reference to article array
+ */
 function wikipediaAjax(lat, lng, limit, radius) {
     //wikipedia API
     return $.ajax({
