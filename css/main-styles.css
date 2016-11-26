@@ -250,6 +250,7 @@ h2#marker-menu-headline {
     /*Safari*/
 
     transition: right 0.7s;
+    transition-timing-function: cubic-bezier(0.39, 0.58, 0.57, 1);
     font-size: 1.95em;
 }
 #markers-menu-container {
@@ -257,6 +258,7 @@ h2#marker-menu-headline {
     /* Safari */
 
     transition: right 0.7s;
+    transition-timing-function: cubic-bezier(0.39, 0.58, 0.57, 1);
     font-size: 1.95em;
 }
 #back-button-div {
