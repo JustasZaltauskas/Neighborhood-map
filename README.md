@@ -15,12 +15,12 @@ You can see a demo [here](https://justaszaltauskas.github.io/Neighborhood-map/in
 
 
 ##Technologies
-[KnockoutJS](http://knockoutjs.com/)  
-JavaScript  
-jQuery  
-HTML5  
-CSS3  
-Bootstrap   
-Grunt 
+[KnockoutJS](http://knockoutjs.com/)
+JavaScript
+jQuery
+HTML5
+CSS3
+Bootstrap
+Grunt
 
 
